@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+      .menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+      }
+      .menu a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        width: 100px;
+        height: 100px;
+        border: none;
+        border-radius: 25;
+      }
+
+      @media (min-width: 768px) {
+        .menu {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h3 align="Center">LAPORAN SHIFT PAGI</h3>
+    <div class="menu">
+      <a href="#" class="btn btn-primary">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="btn btn-secondary">
+        <i class="fas fa-search"></i>
+        <span>Search</span>
+      </a>
+      <a href="#" class="btn btn-success">
+        <i class="fas fa-envelope"></i>
+        <span>Messages</span>
+      </a>
+      <a href="#" class="btn btn-danger">
+        <i class="fas fa-bell"></i>
+        <span>Notifications</span>
+      </a>
+      <a href="#" class="btn btn-warning">
+        <i class="fas fa-camera"></i>
+        <span>Camera</span>
+      </a>
+      <a href="#" class="btn btn-info">
+        <i class="fas fa-chart-bar"></i>
+        <span>Stats</span>
+      </a>
+      <a href="#" class="btn btn-dark">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+      </a>
+      <a href="#" class="btn btn-light">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
