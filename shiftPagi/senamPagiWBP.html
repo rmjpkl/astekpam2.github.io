@@ -1,6 +1,6 @@
 <HTML lang="en" data-bs-theme="light">
     <head>
-        <title>Shalat Duhur</title>
+        <title>Senam Pagi WBP</title>
         <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
       rel="stylesheet"
@@ -27,11 +27,19 @@
     
     <div class="container-sm">
            <body style="background-color:rgb(95, 62, 255);">
-            <h1>LAPORAN SHALAT DUHUR DI MASJID</h1>
+            <h1>LAPORAN SENAM PAGI WBP</h1>
             <form>
                 
+
+                
                 <fieldset class="form-group border p-3">
-                    <div class="mb-3">
+                    
+                <div class="mb-3">
+                    <label class="form-label">Blok A</label>
+                    <input type="number" class="form-control" id="blokA" required="" >
+                </div>
+                
+                <div class="mb-3">
                     <label class="form-label">Blok B</label>
                     <input type="number" class="form-control" id="blokB" required="" >
                 </div>
@@ -60,11 +68,15 @@
                         {
                          //deklarasi variable
                          var hasilSeluruh;
+                         var blokA;
                          var blokB;
                          var blokC;
                          var blokD;
                          var blokE;
                          //input
+                         input_blokA = parseInt(document .
+                         getElementById("blokA").
+                         value);
                          input_blokB = parseInt(document .
                          getElementById("blokB").
                          value);
@@ -79,7 +91,7 @@
                          value);
                        
                          //proses
-                         hasilSeluruh = input_blokB + input_blokC + input_blokD + input_blokE;
+                         hasilSeluruh = input_blokA +  input_blokB + input_blokC + input_blokD + input_blokE;
                          //output
                          document.getElementById("jumlah") .value = hasilSeluruh;
                         }
@@ -118,7 +130,8 @@
     
                 /* Call Input Form */
                 var input_jumlah=$("#jumlah").val(),
-                input_blokB =$("#blokB ").val(),
+                input_blokA=$("#blokA ").val(),
+                input_blokB=$("#blokB ").val(),
                 input_blokC=$("#blokC").val(),
                 input_blokD=$("#blokD").val(),
                 input_blokE=$("#blokE").val();
@@ -128,9 +141,10 @@
                 /* Final Whatsapp URL */
                 var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A%0A' +
                     'Izin melaporakan, ' + '%0A' +
-                    'giat sholat Dzuhur berjamaah di masjid:' + '%0A' +
+                    'giat senam pagi WBP:' + '%0A' +
                     '----------------------------------' + '%0A' +
-                    '```Blok B : '+ input_blokB +' orang' + '%0A' +
+                    '```Blok A : '+ input_blokA +' orang' + '%0A' +
+                    'Blok B : ' + input_blokB + ' orang' +'%0A' +
                     'Blok C : ' + input_blokC + ' orang' +'%0A' +
                     'Blok D : ' + input_blokD + ' orang' +'%0A' +
                     'Blok E : ' + input_blokE + ' orang' +'%0A' +
