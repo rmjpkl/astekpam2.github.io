@@ -1,90 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
       rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <title>Menu dengan Button Bootstrap</title>
     <style>
-      .menu-item {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .logo-container {
-        text-align: center;
-      }
-
-      .logo {
-        margin-top: 100px;
-        max-width: 50px;
-        max-height: 50px;
-        margin-bottom: 10px;
-      }
       body {
+        padding: 20px;
         background-color: #000;
         color: #fff;
+        text-align: center;
+      }
+      .menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .menu a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        width: 100px;
+        height: 100px;
+        border: none;
+        border-radius: 15px;
+        font-size: 14px;
+      }
+
+      @media (min-width: 768px) {
+        .menu {
+          grid-template-columns: repeat(4, 1fr);
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="logo-container">
-        <img src="assets/logo.png" alt="Logo Beranda" class="logo" />
-      </div>
-      <div class="row">
-        <div class="col-md-4 menu-item">
-          <a
-            href="shiftPagi/astekapamPagi.html"
-            class="btn btn-primary shadow btn-block"
-          >
-            <i class="fa fa-cloud"></i> Shift Pagi
-          </a>
-        </div>
-
-        <div class="col-md-4 menu-item">
-          <a
-            href="shiftSiang/astekapamSiang.html"
-            class="btn btn-warning shadow btn-block"
-          >
-            <i class="fa fa-sun"></i> Shift siang
-          </a>
-        </div>
-
-        <div class="col-md-4 menu-item">
-          <a
-            href="shiftMalam/astekapamMalam.html"
-            class="btn btn-dark shadow btn-block"
-          >
-            <i class="fa fa-moon"></i> Shift Malam
-          </a>
-        </div>
-
-        <div class="col-md-4 menu-item">
-          <a
-            href="shiftPagiLibur/astekapamPagiLibur.html"
-            class="btn btn-info shadow btn-block"
-          >
-            <i class="fa fa-cloud"></i> Shift Pagi Hari Libur
-          </a>
-        </div>
-
-        <div class="col-md-4 menu-item">
-          <a
-            href="ShiftSingLibur/astekapamSiangLibur.html"
-            class="btn btn-success shadow btn-block"
-          >
-            <i class="fa fa-sun"></i> Shift siang Hari Libur
-          </a>
-        </div>
-      </div>
+    <h3>E-LAPOR</h3>
+    <h4>Lapas Kelas IIB Batang</h4>
+    <br />
+    <div class="menu">
+      <a href="shiftPagi/menuShiftPagi.html" class="btn btn-primary">
+        <i class="fa fa-cloud"></i>
+        <span>PAGI</span>
+      </a>
+      <a href="shiftSiang/astekapamSiang.html" class="btn btn-warning">
+        <i class="fa fa-sun"></i>
+        <span>SIANG</span>
+      </a>
+      <a href="shiftMalam/astekapamMalam.html" class="btn btn-dark">
+        <i class="fa fa-moon"></i>
+        <span>MALAM</span>
+      </a>
+      <a href="shiftPagiLibur/astekapamPagiLibur.html" class="btn btn-primary">
+        <i class="fa fa-cloud"></i>
+        <span>PAGI HARI LIBUR</span>
+      </a>
+      <a href="ShiftSingLibur/astekapamSiangLibur.html" class="btn btn-warning">
+        <i class="fa fa-sun"></i>
+        <span>SIANG HARI LIBUR</span>
+      </a>
+      <a href="#" class="btn btn-light">
+        <i class="fa fa-user"></i>
+        <span>STAF</span>
+      </a>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>
