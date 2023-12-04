@@ -1,6 +1,6 @@
 <HTML lang="en" data-bs-theme="light">
     <head>
-        <title>Pembagian Makan</title>
+        <title>Laporan Pos Menara</title>
         <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
       rel="stylesheet"
@@ -16,14 +16,9 @@
                 font-weight: 700;
                 letter-spacing: .5px;
                 font-size: 15px;
-                margin-top: 10px;
                 float: right;
             }
 
-            .custom-textarea {
-                width: 80%; /* Atur lebar sesuai kebutuhan */
-                height: 200px;
-                }
         </style>
 
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
@@ -32,15 +27,21 @@
     </head>
     
     <div class="container-sm">
-           <body style="background-color:rgb(95, 62, 255);">
-            <h1>LAPORAN PEMBAGIAN MAKAN PAGI</h1>
+           <body style="background-color:rgb(255, 255, 255);">
+            <h1>LAPORAN POS MENARA</h1>
             <form>
                 
                 <fieldset class="form-group border p-3">
                     <div class="mb-3">
-                    <label class="form-label">Pos Menara 1</label>
-                    <textarea class="form-control custom-textarea" id="makan" name="makan" placeholder="Makan Pagi" rows="4"> Izin melaporkan, pembagian makan pagi bagi WBP penagwasan rupam pagi keadaan aman</textarea>                             
-                </div>
+                    <label class="form-label">Pilih Pos Menara </label>
+                    <select class="form-control"name="pos" id="pos">
+                        <option value=" ">Pilih Rupam</option>
+                        <option value="I">Pos Menara 1</option>
+                        <option value="II">Pos Menara 2</option>
+                        <option value="III">Pos Menara 3</option>
+                        <option value="IV">Pos Menara 4</option>
+                    </select>
+                    </div>
 
 
                 </fieldset>
@@ -55,7 +56,7 @@
     <script type="text/javascript">
         //<![CDATA[
         $(document).on('click', '.send_form', function () {
-            var input_blanter = document.getElementById('makan');
+            var input_blanter = document.getElementById('pos');
             /* Whatsapp Settings */
             var walink = 'https://web.whatsapp.com/send',
                 phone = '',
@@ -71,12 +72,15 @@
             if ("" != input_blanter.value) {
     
                 /* Call Input Form */
-                var input_makan=$("#makan").val();
+                var input_pos=$("#pos").val();
     
     /* Cek kemudian print di url whatsapp api */
     
                 /* Final Whatsapp URL */
-                var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A' + input_makan;
+                var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A%0A' +
+                    'izn melaporkan, serah terima tugas jaga POS Menara ' + input_pos + '%0A' +
+                    'kondisi sekitar Pos Menara ' + input_pos + ' terpantau aman ' + '%0A' +
+                    'barang inventaris lengkap. ' + '%0A' ;
     
                 /* Whatsapp Window Open */
                 window.open(blanter_whatsapp, '_blank');
