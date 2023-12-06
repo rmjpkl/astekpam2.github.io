@@ -1,0 +1,155 @@
+<HTML lang="en"  data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LAPORAN P2U</title>
+        <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      rel="stylesheet"
+    />
+        <style type="text/css">
+            #send_form {
+                color: #fff;
+                background: #4e4e4e;
+                text-decoration: none;
+                display: inline-block;
+                padding: 10px 25px;
+                border-radius: .3rem;
+                font-weight: 700;
+                letter-spacing: .5px;
+                font-size: 15px;
+                float: right;
+            }
+
+        </style>
+
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    
+    <div class="container-sm">
+           <body>
+            <h1>LAPORAN P2U MALAM</h1>
+            <form>
+                
+                <fieldset class="form-group border p-3">
+               <div class="mb-3">
+                    <label for="tanggal" class="form-label">Pilih Tanggal</label>
+                    <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="klik unutk memilih tanggal">
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
+                    <script>
+                        $(document).ready(function(){
+                        $('#tanggal').datepicker({
+                            format: 'DD , dd M yyyy',
+                            language: 'id', 
+                            autoclose: true
+                        }); 
+                        $('#tanggal').datepicker('setDate', new Date())                      
+                        });
+                    </script>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Dari Rupam</label>
+                    <select class="form-control"name="dariRupam" id="dariRupam">
+                        <option value=" ">Pilih Rupam</option>
+                        <option value="Rupam 1">Rupam 1</option>
+                        <option value="Rupam 2">Rupam 2</option>
+                        <option value="Rupam 3">Rupam 3</option>
+                        <option value="Rupam 4">Rupam 4</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Kepada Rupam </label>
+                    <select class="form-control"name="kepadaRupam" id="kepadaRupam">
+                        <option value=" ">Pilih Rupam</option>
+                        <option value="Rupam 1">Rupam 1</option>
+                        <option value="Rupam 2">Rupam 2</option>
+                        <option value="Rupam 3">Rupam 3</option>
+                        <option value="Rupam 4">Rupam 4</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Senpi</label>
+                    <input type="number" class="form-control" id="senpi" value="2" required="" placeholder="Pistol">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Magazine</label>
+                    <input type="number" class="form-control" id="magazine" value="4" required="" placeholder="Magazine">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Peluru</label>
+                    <input type="number" class="form-control" id="peluru" value="18" required="" placeholder="Peluru">
+                </div>
+
+                <a class="send_form" id="send_form" href="javascript:void" type="submit" title="Send to Whatsapp"> <i class="fa fa-paper-plane"></i>  Kirim</a>
+
+                </fieldset>
+           
+    
+ 
+            </form>
+            <br><br>
+    </div>
+    
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).on('click', '.send_form', function () {
+            var input_blanter = document.getElementById('tanggal');
+            /* Whatsapp Settings */
+            var walink = 'https://web.whatsapp.com/send',
+                phone = '',
+                walink2 = 'Halo saya ingin Memesan ',
+                text_yes = 'Terkirim.',
+                text_no = 'Isi semua Formulir lalu klik Send.';
+    
+            /* Smartphone Support */
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var walink = 'whatsapp://send';
+            }
+    
+            if ("" != input_blanter.value) {
+    
+                /* Call Input Form */
+                var input_tanggal=$("#tanggal").val(),
+                input_dariRupam =$("#dariRupam ").val(),
+                input_kepadaRupam=$("#kepadaRupam").val(),
+                input_senpi=$("#senpi").val(),
+                input_magazine=$("#magazine").val(),
+                input_peluru=$("#peluru").val();
+    
+    /* Cek kemudian print di url whatsapp api */
+    
+                /* Final Whatsapp URL */
+                var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A%0A' +
+                    'Izin melaporakan, ' + '%0A' +
+                    'serah terima P2U ' + input_dariRupam +' Siang ke P2U ' + input_kepadaRupam + ' Malam. ' + '%0A' +
+                    '' + input_tanggal + '%0A' +
+                    'beserta inventaris ' + '%0A' +
+                    '```senpi   : '+ input_senpi +' buah' + '%0A' +
+                    'magazine: ' + input_magazine + ' buah' +'%0A' +
+                    'peluru  : ' + input_peluru + ' butir```' +'%0A' +
+                    'dalam keadaan lengkap dan aman' + '%0A' +
+                    ' ' + '%0A';
+    
+                /* Whatsapp Window Open */
+                window.open(blanter_whatsapp, '_blank');
+                document.getElementById("text-info").innerHTML = '<span class="yes">' + text_yes + '</span>';
+            } else {
+                document.getElementById("text-info").innerHTML = '<span class="no">' + text_no + '</span>';
+            }
+        });
+    //]]>
+    </script>
+    
+    </body>
+    
+    </HTML>
