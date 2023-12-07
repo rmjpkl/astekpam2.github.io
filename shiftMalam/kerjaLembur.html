@@ -1,0 +1,95 @@
+<HTML lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LAPORAN KERJA LEMBUR</title>
+        <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      rel="stylesheet"
+    />
+        <style type="text/css">
+            #send_form {
+                color: #fff;
+                background: #4e4e4e;
+                text-decoration: none;
+                display: inline-block;
+                padding: 10px 25px;
+                border-radius: .3rem;
+                font-weight: 700;
+                letter-spacing: .5px;
+                font-size: 15px;
+                float: right;
+                margin-top: -10px;
+            }
+
+            .custom-textarea {
+                width: 80%; /* Atur lebar sesuai kebutuhan */
+                height: 200px;
+                }
+        </style>
+
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    
+    <div class="container-sm">
+           <body>
+            <h1>LAPORAN KERJA LEMBUR</h1>
+            <form>
+                
+                <fieldset class="form-group border p-3">
+                    <div class="mb-3">
+                    <label class="form-label">Laporan Kerja Lembur</label>
+                    <textarea class="form-control custom-textarea" id="kerjaLembur" name="kerjaLembur" placeholder="kerjaLembur Siang" rows="4">Izin melaporkan 5 WBP kerja lembur , memperbaiki listrik, pengawasan rupam malam keadaan aman. </textarea>                             
+                </div>
+
+
+                <a class="send_form " id="send_form" href="javascript:void" type="submit" title="Send to Whatsapp"> <i class="fa fa-paper-plane"></i>  Kirim</a>
+                </fieldset>
+                
+
+    
+            </form>
+            <br><br>
+    </div>
+    
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).on('click', '.send_form', function () {
+            var input_blanter = document.getElementById('kerjaLembur');
+            /* Whatsapp Settings */
+            var walink = 'https://web.whatsapp.com/send',
+                phone = '',
+                walink2 = 'Halo saya ingin Memesan ',
+                text_yes = 'Terkirim.',
+                text_no = 'Isi semua Formulir lalu klik Send.';
+    
+            /* Smartphone Support */
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var walink = 'whatsapp://send';
+            }
+    
+            if ("" != input_blanter.value) {
+    
+                /* Call Input Form */
+                var input_kerjaLembur=$("#kerjaLembur").val();
+    
+    /* Cek kemudian print di url whatsapp api */
+    
+                /* Final Whatsapp URL */
+                var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + input_kerjaLembur;
+    
+                /* Whatsapp Window Open */
+                window.open(blanter_whatsapp, '_blank');
+                document.getElementById("text-info").innerHTML = '<span class="yes">' + text_yes + '</span>';
+            } else {
+                document.getElementById("text-info").innerHTML = '<span class="no">' + text_no + '</span>';
+            }
+        });
+    //]]>
+    </script>
+    
+    </body>
+    
+    </HTML>

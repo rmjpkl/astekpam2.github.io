@@ -1,8 +1,6 @@
-<HTML lang="en" data-bs-theme="dark">
+<HTML lang="en" data-bs-theme="light">
     <head>
-        <title>LAPORAN KERJA LUAR</title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LAPORAN TROLLING</title>
         <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
       rel="stylesheet"
@@ -37,52 +35,16 @@
     </head>
     
     <div class="container-sm">
-           <body>
-            <h1>LAPORAN PENGELUARAN KERJA LUAR</h1>
+           <body style="background-color:rgb(255, 255, 255);">
+            <h1>LAPORAN TROLLING BLOK HUNIAN</h1>
             <form>
                 
                 <fieldset class="form-group border p-3">
                <div class="mb-3">
-                  
+                               
                 <div class="mb-3">
-                    <label class="form-label">Jumlah Yang Kelaur</label>
-                    <input type="text" class="form-control" id="jumlahYangKeluar" value=" 4 org tamping asimilasi kerja luar" required="" placeholder="Pistol">
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Atas Nama Yang Keluar</label>
-                    <input type="text" class="form-control" id="atasNama" value="an Suranto dkk" required="" placeholder="Magazine">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Pengawal</label>
-                    <input type="text" class="form-control" id="pengawal" value=" " required="" placeholder="Peluru">
-                    <script>
-                        $( function() {
-                          var availableTags = [
-                            "Sdr. Anggit Febianto",
-                            "Sdr. Caputra",
-                            "Sdr. Daffa Bagos Marsekal",
-                            "Sdr. Dody Sam Yusuf",
-                            "Sdr. Hendra Surya A.G",
-                            "Sdr. Ifal Khoiril",
-                            "Sdr. Lafran Dwi Wijayanto",
-                            "Sdr. M Fahmi Maulana",
-                            "Sdr. M. Aditya Nugratama",
-                            "Sdr. M. Irfan Nuddin",
-                            "Sdr. M. Rafi",
-                            "Sdr. Muh. Ade Purwadi",
-                            "Sdr. Nuur Sidiq Permana",
-                            "Sdr. Priambodo",
-                            "Sdr. Sofyan Ali",
-                            "Sdr. Suliz Aprizal",
-                            "Sdr. Zihan Sendiko.P"
-                          ];
-                          $( "#pengawal" ).autocomplete({
-                            source: availableTags
-                          });
-                        } );
-                        </script>
+                    <label class="form-label">Petugas</label>
+                    <input type="text" class="form-control" id="petugas" required="" value="Anggota Jaga Rupam Siang">
                 </div>
 
 
@@ -98,7 +60,7 @@
     <script type="text/javascript">
         //<![CDATA[
         $(document).on('click', '.send_form', function () {
-            var input_blanter = document.getElementById('jumlahYangKeluar');
+            var input_blanter = document.getElementById('petugas');
             /* Whatsapp Settings */
             var walink = 'https://web.whatsapp.com/send',
                 phone = '',
@@ -114,18 +76,16 @@
             if ("" != input_blanter.value) {
     
                 /* Call Input Form */
-                var input_jumlahYangKelaur=$("#jumlahYangKeluar").val(),
-                input_atasNama =$("#atasNama ").val(),
-                input_pengawal=$("#pengawal").val();
+                var input_petugas=$("#petugas").val();
     
     /* Cek kemudian print di url whatsapp api */
     
                 /* Final Whatsapp URL */
                 var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A%0A' +
                     'Izin melaporakan, ' + '%0A' +
-                    input_jumlahYangKelaur  + '%0A' +
-                    input_atasNama + '%0A' +
-                    'Pengawal '+ input_pengawal + '%0A';
+                    input_petugas  + '%0A' +
+                    'melaksanakan trolling seluruh blok hunian  '+  '%0A'+
+                    'dalam keadaan aman dan lengkap. ' + '%0A';
     
                 /* Whatsapp Window Open */
                 window.open(blanter_whatsapp, '_blank');
