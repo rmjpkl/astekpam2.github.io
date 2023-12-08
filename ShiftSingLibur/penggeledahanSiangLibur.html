@@ -1,5 +1,7 @@
 <HTML lang="en" data-bs-theme="light">
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>ASTEKPAM PAGI</title>
         <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
@@ -10,13 +12,14 @@
                 color: #fff;
                 background: #4e4e4e;
                 text-decoration: none;
-                display: inline-block;
+                display: block;
                 padding: 10px 25px;
                 border-radius: .3rem;
                 font-weight: 700;
                 letter-spacing: .5px;
                 font-size: 15px;
                 float: right;
+            }
 
         </style>
 
@@ -26,7 +29,7 @@
     </head>
     
     <div class="container-sm">
-           <body style="background-color:rgb(95, 62, 255);">
+           <body>
             <h1>ASTEKPAM PAGI</h1>
             <form>
                 
@@ -41,10 +44,11 @@
                     <script>
                         $(document).ready(function(){
                         $('#tanggal').datepicker({
-                            format: 'DD , dd MM yyyy',
+                            format: 'DD , dd M yyyy',
                             language: 'id', 
                             autoclose: true
-                        });                       
+                        });   
+                        $('#tanggal').datepicker('setDate', new Date())                       
                         });
                     </script>
                 </div>
@@ -116,11 +120,11 @@
                     </script>
                 </div>  
 
+                <a class="send_form" id="send_form" href="javascript:void" type="submit" title="Send to Whatsapp"> <i class="fa fa-paper-plane"></i>  Kirim</a>
 
                 </fieldset>
            
     
-                  <a class="send_form" id="send_form" href="javascript:void" type="submit" title="Send to Whatsapp"> <i class="fa fa-paper-plane"></i>  Kirim</a>
  
             </form>
             <br><br>
