@@ -1,0 +1,236 @@
+<HTML lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>APEL STAF</title>
+        <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      rel="stylesheet"
+    />
+        <style type="text/css">
+            #send_form {
+                color: #fff;
+                background: #4e4e4e;
+                text-decoration: none;
+                display: block;
+                padding: 10px 25px;
+                border-radius: .3rem;
+                font-weight: 700;
+                letter-spacing: .5px;
+                font-size: 15px;
+                float: right;
+                margin-top: auto;
+            }
+
+        </style>
+
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    
+    <div class="container-sm">
+           <body style="background-color:rgb(255, 255, 255);">
+            <h1>APEL STAF</h1>
+            <form>
+                
+                <fieldset class="form-group border p-3">
+               <div class="mb-3">
+                    <label for="hari" class="form-label">Pilih hari</label>
+                    <input type="text" class="form-control" id="hari" name="hari" placeholder="klik unutk memilih hari">
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
+                    <script>
+                        $(document).ready(function(){
+                        $('#hari').datepicker({
+                            format: 'DD',
+                            language: 'id', 
+                            autoclose: true
+                        }); 
+                        $('#hari').datepicker('setDate', new Date())                         
+                        });
+                    </script>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tanggal" class="form-label">Pilih Tanggal</label>
+                    <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="klik unutk memilih tanggal">
+                     <script>
+                        $(document).ready(function(){
+                        $('#tanggal').datepicker({
+                            format: 'dd MM yyyy',
+                            language: 'id', 
+                            autoclose: true
+                        }); 
+                        $('#tanggal').datepicker('setDate', new Date())                         
+                        });
+                    </script>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Jam Awal Apel </label>
+                    <input type="time" class="form-control" id="pukulAwal" value="07:30">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Jam Akhri Apel </label>
+                    <input type="time" class="form-control" id="pukulAkhir" value="07:40" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tempat</label>
+                    <input type="text" class="form-control" id="tempat" value="Halaman Kantor Utama">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Peserta Apel</label>
+                    <input type="number" class="form-control" id="jumlahPeserta" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Pejabat Struktural</label>
+                    <input type="number" class="form-control" id="pejabat" >
+                </div>
+
+                
+                <div class="mb-3">
+                    <label class="form-label">JFU</label>
+                    <input type="number" class="form-control" id="JFU" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">JFT</label>
+                    <input type="number" class="form-control" id="JFT" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Taruna POLTEKIP</label>
+                    <input type="number" class="form-control" id="taruna" >
+                </div>
+                
+
+                <div class="mb-3">
+                    <label class="form-label">Pembina Apel</label>
+                    <input type="text" class="form-control" id="pembinaApel" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Pemimpin Apel</label>
+                    <input type="text" class="form-control" id="pemimpinApel" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Pembaca Tri Dharma</label>
+                    <input type="text" class="form-control" id="triDharma" >
+                </div>
+
+
+
+                <a class="send_form" id="send_form" href="javascript:void" type="submit" title="Send to Whatsapp"> <i class="fa fa-paper-plane"></i>  Kirim</a>
+
+                </fieldset>
+           
+
+    
+            </form>
+            <br><br>
+    </div>
+    
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).on('click', '.send_form', function () {
+            var input_blanter = document.getElementById('hari');
+            /* Whatsapp Settings */
+            var walink = 'https://web.whatsapp.com/send',
+                phone = '',
+                walink2 = 'Halo saya ingin Memesan ',
+                text_yes = 'Terkirim.',
+                text_no = 'Isi semua Formulir lalu klik Send.';
+    
+            /* Smartphone Support */
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var walink = 'whatsapp://send';
+            }
+    
+            if ("" != input_blanter.value) {
+    
+                /* Call Input Form */
+                var input_hari=$("#hari").val(),
+                input_tanggal=$("#tanggal").val(),
+                input_pukulAwal=$("#pukulAwal").val(),
+                input_pukulAkhir=$("#pukulAkhir").val(),
+                input_tempat=$("#tempat").val(),
+                input_jumlahPeserta=$("#jumlahPeserta").val(),
+                input_pejabat=$("#pejabat").val(),
+                input_JFU=$("#JFU").val(),
+                input_JFT=$("#JFT").val(),
+                input_taruna=$("#taruna").val(),
+                input_pembinaApel=$("#pembinaApel").val(),
+                input_pemimpinApel=$("#pemimpinApel").val(),
+                input_triDharma=$("#triDharma").val();
+    
+    /* Cek kemudian print di url whatsapp api */
+    
+                /* Final Whatsapp URL */
+                var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A%0A' +
+                    '*LAPORAN ATENSI PIMPINAN* ' + '%0A' +
+                    ' ' + '%0A' +
+                    'Yth. Kepala Kantor Wilayah Kementerian Hukum dan HAM Jateng' + '%0A' +
+                    ' ' + '%0A' +
+                    '*I. KEGIATAN*' + '%0A' +
+                    'Apel Pagi Pegawai di Lembaga Pemasyarakatan  Kelas IIB Batang' + '%0A' +
+                    ' ' + '%0A' +
+                    '*II. URAIAN KEGIATAN*' + '%0A' +
+                    '1. Menindaklanjuti surat perintah Sekretaris Jenderal Kementerian Hukum dan HAM RI. Nomor : SEK-UM.04.01-01, perihal Apel Pagi Pegawai Tahun 2022, pada : ' + '%0A' +
+                    '```🗓️ Hari   : '  + input_hari + ',' + '%0A' +
+                    '📆 Tanggal: '  + input_tanggal +  '%0A' +
+                    '⏰ Waktu  : ' + input_pukulAwal + ' – ' + input_pukulAkhir + ' WIB' + '%0A' +
+                    '📍 Tempat : '  + input_tempat +  '%0A' +
+                    '👥 Peserta Apel : '  + input_jumlahPeserta +  ' orang' + '%0A' +
+                    '  a. Pejabat Struktural : '  + input_pejabat + ' orang' + '%0A' +
+                    '  b. JFU                : '  + input_JFU + ' orang' + '%0A' +
+                    '  c. JFT                : '  + input_JFT + ' orang' + '%0A' +
+                    '  d. Taruna POLTEKIP    : '  + input_taruna + ' orang' + '```' + '%0A' +
+                    ' ' + '%0A' +
+                    '2. Susunan Personil : ' + '%0A' +
+                    '```a. Pembina Apel      :' + '%0A' +
+                    '   '  + input_pembinaApel +  '%0A' +
+                    '   -------------------' + '%0A' +
+                    'b. Pemimpin Apel     :' + '%0A' +
+                    '   '  + input_pemimpinApel +  '%0A' +
+                    '   -------------------' + '%0A' +
+                    'c. Pembaca Tri Dharma: ' + '%0A' +
+                    '   '  + input_triDharma +  '%0A' +
+                    '   -------------------```' + '%0A' +
+                    ' ' + '%0A' +
+                    '3.Kegiatan berjalan dengan lancar dan tertib.' + '%0A' +
+                    ' ' + '%0A' +
+                    '*III. SARAN TINDAK LANJUT*' + '%0A' +
+                    'Kegiatan Apel Pagi diharapakan dapat meningkatkan kedisiplinan seluruh pegawai lapas batang.' + '%0A' +
+                    ' ' + '%0A' +
+                    '*IV. PENUTUP*' + '%0A' +
+                    'Demikian laporan yang dapat kami sampaikan, selanjutnya mohon petunjuk dan arahan Kepala Kantor Wilayah Kementerian Hukum dan HAM Jawa Tengah.' + '%0A' +
+                    ' ' + '%0A' +
+                    'Kepala Lembaga Pemasyarakatan Batang' + '%0A' +
+                    ' ' + '%0A' +
+                    'Jose Quelo' + '%0A' +
+                    ' ' + '%0A' +
+                    'Cc.' + '%0A' +
+                    'Kadivpas Jateng ' + '%0A' +
+                    '(Sebagai Laporan)' + '%0A';
+    
+                /* Whatsapp Window Open */
+                window.open(blanter_whatsapp, '_blank');
+                document.getElementById("text-info").innerHTML = '<span class="yes">' + text_yes + '</span>';
+            } else {
+                document.getElementById("text-info").innerHTML = '<span class="no">' + text_no + '</span>';
+            }
+        });
+    //]]>
+    </script>
+    
+    </body>
+    
+    </HTML>
