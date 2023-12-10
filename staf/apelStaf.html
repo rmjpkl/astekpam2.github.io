@@ -27,6 +27,13 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+         <!-- untuk auto complate -->
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+         <link rel="stylesheet" href="/resources/demos/style.css">
+         <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+         <!-- untuk auto complate -->
     </head>
     
     <div class="container-sm">
@@ -38,8 +45,6 @@
                <div class="mb-3">
                     <label for="hari" class="form-label">Pilih hari</label>
                     <input type="text" class="form-control" id="hari" name="hari" placeholder="klik unutk memilih hari">
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
                     <script>
@@ -85,47 +90,72 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">Peserta Apel</label>
+                    <label class="form-label">Jumlah Peserta Apel</label>
                     <input type="number" class="form-control" id="jumlahPeserta" >
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Pejabat Struktural</label>
+                    <label class="form-label">Jumlah Pejabat Struktural</label>
                     <input type="number" class="form-control" id="pejabat" >
                 </div>
 
                 
                 <div class="mb-3">
-                    <label class="form-label">JFU</label>
+                    <label class="form-label">Jumlah JFU</label>
                     <input type="number" class="form-control" id="JFU" >
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">JFT</label>
+                    <label class="form-label">Jumlah JFT</label>
                     <input type="number" class="form-control" id="JFT" >
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Taruna POLTEKIP</label>
+                    <label class="form-label">Jumlah Taruna POLTEKIP</label>
                     <input type="number" class="form-control" id="taruna" >
                 </div>
                 
 
                 <div class="mb-3">
                     <label class="form-label">Pembina Apel</label>
-                    <input type="text" class="form-control" id="pembinaApel" >
+                    <select class="form-control"name="pembinaApel" id="pembinaApel">
+                        <option value=" ">Pilih</option>
+                        <option value="Ka.Lapas">Ka.Lapas</option>
+                        <option value="Kasubag TU">Kasubag TU</option>
+                        <option value="Ka.KPLP">Ka.KPLP</option>
+                        <option value="Kasi Binadik">Kasi Binadik</option>
+                        <option value="Kasi Kamtib">Kasi Kamtib</option>
+                    </select>
                 </div>
+
 
                 <div class="mb-3">
                     <label class="form-label">Pemimpin Apel</label>
-                    <input type="text" class="form-control" id="pemimpinApel" >
+                    <select class="form-control"name="pemimpinApel" id="pemimpinApel">
+                        <option value=" ">Pilih</option>
+                        <option value="Kaur Umum">Kaur Umum</option>
+                        <option value="Kaur Kepegawain dan Keuangan">Kaur Kepegawain dan Keuangan</option>
+                        <option value="Kasubsi Regbimpas">Kasubsi Regbimpas</option>
+                        <option value="Kasubsi Perawatan">Kasubsi Perawatan</option>
+                        <option value="Kasubsi Giatja">Kasubsi Giatja</option>
+                        <option value="Kasubsi Keamanan">Kasubsi Keamanan</option>
+                        <option value="Kasubsi Pelatatib">Kasubsi Pelatatib</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Pembaca Tri Dharma</label>
-                    <input type="text" class="form-control" id="triDharma" >
+                    <select class="form-control"name="triDharma" id="triDharma">
+                        <option value=" ">Pilih</option>
+                        <option value="Staf Kasubag TU">Staf Kasubag TU</option>
+                        <option value="Staf Kaur Kepegawain dan Keuangan,">Staf Kaur Kepegawain dan Keuangan,</option>
+                        <option value="Staf Kasubsi Regbimpas">Staf Kasubsi Regbimpas</option>
+                        <option value="Staf Kasubsi Perawatan">Staf Kasubsi Perawatan</option>
+                        <option value="Staf Kasubsi Giatja">Staf Kasubsi Giatja</option>
+                        <option value="Staf Kasubsi Keamanan">Staf Kasubsi Keamanan</option>
+                        <option value="Staf Kasubsi Pelatatib">Staf Kasubsi Pelatatib</option>
+                    </select>
                 </div>
-
 
 
                 <a class="send_form" id="send_form" href="javascript:void" type="submit" title="Send to Whatsapp"> <i class="fa fa-paper-plane"></i>  Kirim</a>
@@ -184,11 +214,11 @@
                     ' ' + '%0A' +
                     '*II. URAIAN KEGIATAN*' + '%0A' +
                     '1. Menindaklanjuti surat perintah Sekretaris Jenderal Kementerian Hukum dan HAM RI. Nomor : SEK-UM.04.01-01, perihal Apel Pagi Pegawai Tahun 2022, pada : ' + '%0A' +
-                    '```🗓️ Hari   : '  + input_hari + ',' + '%0A' +
-                    '📆 Tanggal: '  + input_tanggal +  '%0A' +
-                    '⏰ Waktu  : ' + input_pukulAwal + ' – ' + input_pukulAkhir + ' WIB' + '%0A' +
-                    '📍 Tempat : '  + input_tempat +  '%0A' +
-                    '👥 Peserta Apel : '  + input_jumlahPeserta +  ' orang' + '%0A' +
+                    '```- Hari   : '  + input_hari + ',' + '%0A' +
+                    '- Tanggal: '  + input_tanggal +  '%0A' +
+                    '- Waktu  : ' + input_pukulAwal + ' – ' + input_pukulAkhir + ' WIB' + '%0A' +
+                    '- Tempat : '  + input_tempat +  '%0A' +
+                    '- Peserta Apel : '  + input_jumlahPeserta +  ' orang' + '%0A' +
                     '  a. Pejabat Struktural : '  + input_pejabat + ' orang' + '%0A' +
                     '  b. JFU                : '  + input_JFU + ' orang' + '%0A' +
                     '  c. JFT                : '  + input_JFT + ' orang' + '%0A' +
