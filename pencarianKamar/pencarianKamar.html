@@ -1,0 +1,217 @@
+<html>
+<head>
+	<title>Pencarian Kamar WBP</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<style type="text/css">
+		body {
+			font-family: "Arial";
+		}
+
+	#myInput {
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+		
+		/* Table */
+		table {
+			margin: auto;
+			font-family: "Arial";
+			font-size: 12px;
+
+		}
+		.table {
+			border-collapse: collapse;
+			font-size: 13px;
+		}
+		.table th, 
+		.table td {
+			border-bottom: 1px solid #cccccc;
+			border-left: 1px solid #cccccc;
+			padding: 9px 21px;
+		}
+		.table th, 
+		.table td:last-child {
+			border-right: 1px solid #cccccc;
+		}
+		.table td:first-child {
+			border-top: 1px solid #cccccc;
+		}
+		caption {
+			caption-side: top;
+			margin-bottom: 10px;
+			font-size: 16px;
+		}
+		
+		/* Table Header */
+		.table thead th {
+			background-color: #3e2ecd;
+			color: #FFFFFF;
+		}
+		
+		/* Table Body */
+		.table tbody td {
+			color: #353535;
+		}
+		.table tbody tr:nth-child(odd) td {
+			background-color: #b7e1fd;
+		}
+		.table tbody tr:hover th,
+		.table tbody tr:hover td {
+			background-color: #f0f0f0;
+			transition: all .2s;
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		/*Tabel Responsive 1*/
+		.table-container {
+			overflow: auto;
+		}
+
+		@media screen and (max-width: 520px) {
+			/*Tabel Responsive 2*/
+			.responsive-2 {
+				width: 100%;
+			}
+			.responsive-2 thead {
+				display: none;
+			}
+			.responsive-2 td {
+				display: block;
+				text-align: right;
+				border-right: 1px solid #e1edff;
+			}
+			.responsive-2 td::before {
+				float: left;
+				text-transform: uppercase;
+				font-weight: bold;
+				content: attr(data-header);
+			}
+
+			/*Tabel Responsive 3*/
+			.responsive-3 {
+				width: 100%;
+			}
+			.responsive-3 thead th.column-primary {
+				width: 100%;
+			}
+
+			.responsive-3 thead th:not(.column-primary) {
+				display: none;
+			}
+			
+			.responsive-3 td {
+				display: block;
+				width: auto;
+				text-align: right;
+				border-right: 1px solid #e1edff;
+			}
+			.responsive-3 thead th::before {
+				text-transform: uppercase;
+				font-weight: bold;
+				content: attr(data-header);
+			}
+			.responsive-3 thead th:first-child span {
+				display: none;
+			}
+			.responsive-3 td::before {
+				float: left;
+				text-transform: uppercase;
+				font-weight: bold;
+				content: attr(data-header);
+			}
+		}
+	</style>
+    
+</head>
+<body>
+	
+	<table class="table responsive-3" id="myTable">
+		<h3 class="text-center">Pencarian Kamar Data WBP</h3>
+		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="ketik nama disini" title="Type in a name">
+		<thead>
+			<tr>
+				<th class="column-primary" data-header="Pencarian WBP"><span>Nama</span></th>
+				<th>Blok</th>
+				<th>Kamar</th>
+			</tr>
+		</thead>
+	</thead>
+	<tbody  id="wrapper" >
+	</tbody>
+	</table>
+	
+    <script>
+		function myFunction() {
+		  var input, filter, table, tr, td, i;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+		  for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+			  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				tr[i].style.display = "";
+			  } else {
+				tr[i].style.display = "none";
+			  }
+			}       
+		  }
+		}
+	</script>
+
+
+<script>
+    async function getData() {
+    const spreadsheetId = '1eyiPUW2POKcPA6-gNQbAlsH37dd1CqJhofZ1sZHVqmA'
+    const apiKey = 'AIzaSyD8yvaiWF3p4ohg2040C4xrwMDqc_cfiI0';
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/?key=${apiKey}&includeGridData=true`;
+    const result = await fetch(url)
+    const { sheets } = await result.json();
+    const firstSheet = sheets[1];
+    const data = firstSheet.data[0].rowData
+        .filter((_, index) => index !== 0) // Mulai dari index 1 (menghindari nama kolom)
+        .map(row => {
+            const { values } = row;
+            return {
+                nama: values[0].formattedValue,
+                blok: values[1].formattedValue,
+                kamar: values[2].formattedValue,
+            }
+        })
+    return data;
+  }
+  
+  
+  function dataItemTemplate(item) {
+    return (
+      `<tr>
+                <td data-header="Nama">${item.nama}</td>
+				<td data-header="Blok">${item.blok}</td>      
+				<td data-header="Kamar">${item.kamar}</td>      
+    </tr>`
+    )
+  }
+  
+  async function renderData() {
+    const wrapperDOM = document.getElementById('wrapper');
+    try {
+      const data = await getData();
+      wrapperDOM.innerHTML = data.map(item => dataItemTemplate(item)).join('');
+    } catch (error) {
+      wrapperDOM.innerHTML = error
+    }
+  }
+  
+  renderData();
+    </script>
+</body>
+</html>
