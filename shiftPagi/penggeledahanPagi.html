@@ -47,7 +47,8 @@
                             format: 'DD , dd MM yyyy',
                             language: 'id', 
                             autoclose: true
-                        });                       
+                        });   
+                        $('#tanggal').datepicker('setDate', new Date())                      
                         });
                     </script>
                 </div>
@@ -102,7 +103,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Hasil Razia Lainnya</label>
-                    <textarea class="form-control" id="hasilRaziaLainnya" onkeyup="getKeterangan()">NIHIL</textarea>  
+                    <textarea class="form-control" id="hasilRaziaLainnya" onclick="getKeterangan()">NIHIL</textarea>  
                 </div>  
 
                 <div class="mb-3">
@@ -112,9 +113,9 @@
                         function getKeterangan() {
                         var inputNilai = document.getElementById("hasilRaziaLainnya").value;
                         if (inputNilai == "NIHIL" || inputNilai == "Nihil") {
-                            document.getElementById("saranTindakLanjut").innerHTML = "1. Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. %0A2. Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
+                            document.getElementById("saranTindakLanjut").innerHTML = "1) Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. %0A2) Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
                         } else {
-                            document.getElementById("saranTindakLanjut").innerHTML =  "1. Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. %0A2. Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
+                            document.getElementById("saranTindakLanjut").innerHTML =  "1) Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. %0A2) Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
                         }
                         }
                     </script>
@@ -169,23 +170,27 @@
                     ' ' + '%0A' +
                     'Kepada,' + '%0A' +
                     'Yth.' + '%0A' +
-                    '1. Bp. KAKANWIL Jawa Tengah' + '%0A' +
-                    '2. Bp. KADIVPAS Jawa Tengah ' + '%0A' +
+                    '1) Bp. KAKANWIL Jawa Tengah' + '%0A' +
+                    '2) Bp. KADIVPAS Jawa Tengah ' + '%0A' +
                     ' ' + '%0A' +
                     '*I. PERISTIWA/ KEJADIAN*' + '%0A' +
                     ' ' + '%0A' +
-                    '1. Pelaksanaan razia/sidak ' + input_namaBlok + ' ' + input_kamar + ' pada Lapas Kelas IIB Batang.'+ '%0A' +
+                    '1) Pelaksanaan razia/sidak ' + input_namaBlok + ' ' + input_kamar + ' pada Lapas Kelas IIB Batang.'+ '%0A' +
                     ' ' + '%0A' +
                     '*II. URAIAN/ PERISTIWA/ KEJADIAN*' + '%0A' +
-                    '1. Pelaksanan kegiatan penggeledahan/ razia kamar hunian di Lapas Kelas IIB Batang dalam rangka menindaklanjuti: ' + '%0A' +
+                    '1) Pelaksanan kegiatan penggeledahan/ razia kamar hunian di Lapas Kelas IIB Batang dalam rangka menindaklanjuti: ' + '%0A' +
+                    
                     'a. Surat Direktur Jenderal Pemasyarakatan Nomor: PAS-PR.02.02-57 tanggal 8 September 2021, hal penertiban jaringan listrik dan peningkatan kewaspadaan keamanan dan ketertiban. ' + '%0A' +
                     'b. Surat Direktur Jenderal Pemasyarakatan Nomor : PAS-PK.02.10.01-1147 tanggal 19 September 2021, hal langkah progressive sebagai tindak lanjut atas penertiban jaringan listrik, handphone dan peningkatan kewaspadaan keamanan dan ketertiban pada UPT Pemasyarakatan. ' + '%0A' +
-                    '2. Pada hari ini, '+ input_tanggal+' mulai pukul '+ input_pukulAwal +' s/d '+  input_pukulAkhir +' WIB. Tim penggeledahan Lapas Kelas IIB Batang melaksanakan razia/sidak dan pemeriksaan instalasi listrik di  ' + input_namaBlok + ' ' + input_kamar + '%0A' +
-                    '3. Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang-barang larangan dan instalasi listrik yang berbahaya di dalam Lapas berupa seperti jaringan liar, stop kontak, HP, Narkoba dan SAJAM.' + '%0A' +
-                    '4. Razia/penggeledahan diikuti :' + '%0A' +
+                    ' ' + '%0A' +
+                    '2) Pada hari ini, '+ input_tanggal+' mulai pukul '+ input_pukulAwal +' s/d '+  input_pukulAkhir +' WIB. Tim penggeledahan Lapas Kelas IIB Batang melaksanakan razia/sidak dan pemeriksaan instalasi listrik di  ' + input_namaBlok + ' ' + input_kamar + '%0A' +
+                    ' ' + '%0A' +
+                    '3) Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang-barang larangan dan instalasi listrik yang berbahaya di dalam Lapas berupa seperti jaringan liar, stop kontak, HP, Narkoba dan SAJAM.' + '%0A' +
+                    ' ' + '%0A' +
+                    '4) Razia/penggeledahan diikuti :' + '%0A' +
                     input_timPenggeldahan + '%0A' +
                     ' ' + '%0A' +
-                    '5. Hasil razia/ sidak dan pemeriksaan instalasi listrik petugas tidak menemukan benda/barang larangan berupa :' + '%0A' +
+                    '5) Hasil razia/ sidak dan pemeriksaan instalasi listrik petugas tidak menemukan benda/barang larangan berupa :' + '%0A' +
                     '```1. Sajam   : ' + input_sajam  +'%0A' +
                     '2. Hp      : ' + input_hp +'%0A' +
                     '3. Narkoba : ' + input_narkoba +'%0A' +
@@ -194,8 +199,8 @@
                     ' ' + '%0A' +
                     '*III. SARAN TINDAK LANJUT*' + '%0A' +
                     input_saranTindakLanjut + '%0A' +
-                    '3. Ka. Lapas melaporkan pelaksanaan razia/ sidak kepada Kakanwil Kemenkumham Jateng melalui Kepala Divisi Pemasyarakatan.' + '%0A' +
-                    '4. Pelaksanaan razia/ sidak berjalan dengan aman, tertib dan lancar. ' + '%0A' +
+                    '3) Ka. Lapas melaporkan pelaksanaan razia/ sidak kepada Kakanwil Kemenkumham Jateng melalui Kepala Divisi Pemasyarakatan.' + '%0A' +
+                    '4) Pelaksanaan razia/ sidak berjalan dengan aman, tertib dan lancar. ' + '%0A' +
                     ' ' + '%0A' +
                     '*IV. PENUTUP* ' + '%0A' +
                     'Demikian laporan yang dapat kami sampaikan, selanjutnya mohon  petunjuk dan arahan. ' + '%0A' +
