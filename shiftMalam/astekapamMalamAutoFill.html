@@ -87,21 +87,82 @@
                 </fieldset>
 
                 <br/>
+
+
+
+
+                <script>
+                    // mengambil nilai dari spreadsheet
+                    async function getData() {
+                    const spreadsheetId = '1TmJofZ5Q5WcsqwAL6xYmKR1rOuUiyH4eXl4ANzEaeIY'
+                    const apiKey = 'AIzaSyD8yvaiWF3p4ohg2040C4xrwMDqc_cfiI0';
+                    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/?key=${apiKey}&includeGridData=true`;
+                    const result = await fetch(url)
+                    const { sheets } = await result.json();
+                    const firstSheet = sheets[0];
+                    const data = firstSheet.data[0].rowData
+                        .filter((_, index) => index !== 0) // Mulai dari index 1 (menghindari nama kolom)
+                        .map(row => {
+                            const { values } = row;
+                            return {
+                                satu: values[0].formattedValue,
+                                dua: values[1].formattedValue,
+                                tiga: values[2].formattedValue,
+                                empat: values[3].formattedValue,
+                                lima: values[4].formattedValue,
+                                enam: values[5].formattedValue,
+                                tujuh: values[6].formattedValue,
+                            }
+                        })
+                    return data;
+                    }
+                 
+                </script>
+
+
+
+
                 <fieldset class="form-group border p-3">
+                    
                     <legend >Di Dalam Lapas</legend>
                 <div class="mb-3">
                     <label class="form-label">Jumlah Tahanan</label>
                     <input type="number" class="form-control" id="jumlahTahanan" required="" placeholder="Jumlah Tahanan">
+                    <script>
+                        async function displayData() {
+                        const data = await getData();
+                        const inputValue = document.getElementById('jumlahTahanan');
+                        inputValue.value = data[0].lima; 
+                        }
+                        displayData();
+                  </script>
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Jumlah Narapidana</label>
                     <input type="number" class="form-control" id="jumlahNarapidana" required="" placeholder="Jumlah Narapidana" onkeyup="getjumlah()">
+                    <script>
+                        async function displayData() {
+                        const data = await getData();
+                        const inputValue = document.getElementById('jumlahNarapidana');
+                        inputValue.value = data[0].enam; 
+                        }
+                        displayData();
+                  </script>
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Total Didalam </label>
                     <input type="number" class="form-control" id="totalDidalam" required="" placeholder="Total Didalam">
+
+                    <script>
+                        async function displayData() {
+                        const data = await getData();
+                        const inputValue = document.getElementById('totalDidalam');
+                        inputValue.value = data[0].tujuh; 
+                        }
+                        displayData();
+                  </script>
 
                     <script>
                         function getjumlah ()
@@ -176,6 +237,15 @@
                 <div class="mb-3">
                     <label class="form-label">Jumlah Keseluruhan</label>
                     <input type="number" class="form-control" id="grandTotal" required="" placeholder="Jumlah Keseluruhan" OnClick="getjumlahSeluruh()" >
+
+                    <script>
+                        async function displayData() {
+                        const data = await getData();
+                        const inputValue = document.getElementById('grandTotal');
+                        inputValue.value = data[0].tujuh; 
+                        }
+                        displayData();
+                  </script>
 
                     <script>
                         function getjumlahSeluruh ()
@@ -407,114 +477,48 @@
                 </div>
 
 
-                <div id="data-penagwasUmum"> </div>
-                <div id="data-piketPerwira"> </div>
-                <div id="data-piketStaf"> </div>
+                <di>
+                    <label class="form-label">Pengawas Umum</label>
+                    <input type="text" class="form-control" id="pengawasUmum"  >
+                    <script>
+                        $(  function() {
+                          var availableTags = [
+                            "FANNY YUSUF.I,ST.",
+                            "RINGGA RAHMANTO,S.Psi",
+                            "DHONI ARIB S,Amd.IP.,S.H.",
+                            "CENDY, Amd.IP.,S.H.,M.H"
+                          ];
+                          $( "#pengawasUmum" ).autocomplete({
+                            source: availableTags
+                          });
+                        } );
+                    </script>
 
-                <script>
-                    async function getData() {
-                    const spreadsheetId = '1TmJofZ5Q5WcsqwAL6xYmKR1rOuUiyH4eXl4ANzEaeIY'
-                    const apiKey = 'AIzaSyD8yvaiWF3p4ohg2040C4xrwMDqc_cfiI0';
-                    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/?key=${apiKey}&includeGridData=true`;
-                    const result = await fetch(url)
-                    const { sheets } = await result.json();
-                    const firstSheet = sheets[0];
-                    const data = firstSheet.data[0].rowData
-                        .filter((_, index) => index !== 0) // Mulai dari index 1 (menghindari nama kolom)
-                        .map(row => {
-                            const { values } = row;
-                            return {
-                                satu: values[0].formattedValue,
-                                dua: values[1].formattedValue,
-                                tiga: values[2].formattedValue,
-                                empat: values[3].formattedValue,
-                            }
-                        })
-                    return data;
-                    }
-                 
-                </script>
-                
-                
-                <script>
-                    async function displayData() {
-                      const data = await getData();
-                      const container = document.getElementById('data-penagwasUmum');
-                
-                      data.forEach(item => {
-                        const div = document.createElement('div');
-                        div.classList.add('data-item');
-                        div.innerHTML = `<label class="form-label">Pengawas Umum</label>
-                        <input type="text" class="form-control" id="pengawasUmum"  value="${item.dua}" >
-                        `;
-                        container.appendChild(div);
-                      });
-                    }
-                
-                    displayData();
-                  </script>
+                </di>
 
+                <div>
+                    <label class="form-label">Piket Perwira</label>
+                    <input type="text" class="form-control" id="piketPerwira">
+                    <script>
+                        $(  function() {
+                          var availableTags = [
+                            "WINDU ARI AGUNG, S.H.",
+                            "INDARTO ADIPUTRA, S.H",
+                            "AMIN AUNUR ROFIQ, S.P",
+                            "ARDHYAN BANGUN.R, S.H",
+                            "RIZAL EKA P M, S.H.",
+                            "DESDY PURWANTO"
+                          ];
+                          $( "#piketPerwira" ).autocomplete({
+                            source: availableTags
+                          });
+                        } );
+                    </script>
+                 </div>
 
-
-                <script>
-                    async function displayData() {
-                    const data = await getData();
-                    const container = document.getElementById('data-piketPerwira');
-
-                    data.forEach(item => {
-                        const div = document.createElement('div');
-                        div.classList.add('data-item');
-                        div.innerHTML = `<label class="form-label">Piket Perwira</label>
-                        <input type="text" class="form-control" id="piketPerwira"  value="${item.tiga}" >
-                        `;
-                        container.appendChild(div);
-                    });
-                    }
-
-                    displayData();
-                </script>
-
-
-
-                <script>
-                    async function displayData() {
-                    const data = await getData();
-                    const container = document.getElementById('data-piketStaf');
-
-                    data.forEach(item => {
-                        const div = document.createElement('div');
-                        div.classList.add('data-item');
-                        div.innerHTML = `<label class="form-label">Piket Staf</label>
-                        <input type="text" class="form-control" id="piketStaf"  value="${item.empat}" >
-                        `;
-                        container.appendChild(div);
-                    });
-                    }
-
-                    displayData();
-                </script>
-
-
-
-                
-                
-                <!-- <div class="mb-3">
-                    <label class="form-label">Piket Perwira </label>
-                    <select class="form-control"name="piketPerwira" id="piketPerwira">
-                        <option value=" ">Piket Perwira</option>
-                        <option value="WINDU ARI AGUNG, S.H.">WINDU ARI AGUNG, S.H.</option>
-                        <option value="INDARTO ADIPUTRA, S.H">INDARTO ADIPUTRA, S.H</option>
-                        <option value="AMIN AUNUR ROFIQ, S.P">AMIN AUNUR ROFIQ, S.P</option>
-                        <option value="ARDHYAN BANGUN.R, S.H">ARDHYAN BANGUN.R, S.H</option>
-                        <option value="RIZAL EKA P M, S.H.">RIZAL EKA P M, S.H.</option>
-                        <option value="DESDY PURWANTO">DESDY PURWANTO</option>
-                      </select>
-                </div>
-                
-                
-                <div class="mb-3">
+                <div> 
                     <label class="form-label">Piket Staf</label>
-                    <input type="text" class="form-control" id="piketStaf" placeholder="Piket Staf">
+                    <input type="text" class="form-control" id="piketStaf">
                     <script>
                         $(  function() {
                           var availableTags = [
@@ -541,8 +545,43 @@
                           });
                         } );
                     </script>
+                </div>
 
-                </div> -->
+               
+                
+                
+                <script>
+                        async function displayData() {
+                        const data = await getData();
+                        const inputPengawasUmum = document.getElementById('pengawasUmum');
+                        inputPengawasUmum.value = data[0].dua; 
+                        }
+                        displayData();
+
+                  </script>
+
+
+
+                <script>
+                    async function displayData() {
+                        const data = await getData();
+                        const inputPiketPerwira = document.getElementById('piketPerwira');
+                        inputPiketPerwira.value = data[0].tiga; 
+                        }
+                        displayData();
+                </script>
+
+
+
+                <script>
+                   async function displayData() {
+                        const data = await getData();
+                        const inputPiketStaf = document.getElementById('piketStaf');
+                        inputPiketStaf.value = data[0].empat; 
+                        }
+                        displayData();
+                </script>
+
                </fieldset>
                 
                <br/>
