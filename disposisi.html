@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disposisi Surat</title>
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+        body {
+            background-color: #212529; /* Dark theme background */
+            color: #f8f9fa; /* Light text color */
+            padding-top: 20px;
+        }
+
+        .container-sm {
+            max-width: 700px;
+        }
+
+        /* Styling for the send button */
+        #send_form {
+            color: #fff;
+            background: #0d6efd; /* Bootstrap primary blue */
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: .3rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            font-size: 15px;
+            float: right;
+            border: none;
+            cursor: pointer;
+        }
+        #send_form:hover {
+            background: #0b5ed7;
+        }
+
+        /* Styling for feedback messages */
+        #text-info .yes {
+            color: #198754; /* Green for success */
+            font-weight: bold;
+        }
+        #text-info .no {
+            color: #dc3545; /* Red for error */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-sm">
+        <h1>Disposisi Surat</h1>
+        <form id="disposisiForm">
+            <fieldset class="form-group border p-3 rounded">
+                <legend class="w-auto px-2 h6">Detail Surat</legend>
+
+                <!-- Tanggal Diterima -->
+                <div class="mb-3">
+                    <label for="tanggal_diterima" class="form-label">Tanggal Diterima</label>
+                    <input type="date" class="form-control" id="tanggal_diterima" required>
+                </div>
+
+                <!-- Nomor Surat -->
+                <div class="mb-3">
+                    <label for="nomor_surat" class="form-label">Nomor Surat</label>
+                    <input type="text" class="form-control" id="nomor_surat" placeholder="Masukkan nomor surat" required>
+                </div>
+
+                <!-- Tanggal Surat -->
+                <div class="mb-3">
+                    <label for="tanggal_surat" class="form-label">Tanggal Surat</label>
+                    <input type="date" class="form-control" id="tanggal_surat" required>
+                </div>
+
+                <!-- Asal Surat -->
+                <div class="mb-3">
+                    <label for="asal_surat" class="form-label">Asal Surat</label>
+                    <input type="text" class="form-control" id="asal_surat" placeholder="Masukkan asal surat" required>
+                </div>
+
+                <!-- Ringkasan -->
+                <div class="mb-3">
+                    <label for="ringkasan" class="form-label">Ringkasan</label>
+                    <textarea class="form-control" id="ringkasan" rows="3" placeholder="Masukkan ringkasan isi surat" required></textarea>
+                </div>
+                
+                <!-- Feedback message area -->
+                <div id="text-info" class="mt-3"></div>
+
+                <!-- Send Button -->
+                <a class="send_form" id="send_form" href="javascript:void(0)" title="Send to Whatsapp">
+                    <i class="fab fa-whatsapp"></i> Kirim
+                </a>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).on('click', '.send_form', function () {
+        // Get values from all form inputs
+        const tglDiterima = $('#tanggal_diterima').val();
+        const noSurat = $('#nomor_surat').val();
+        const tglSurat = $('#tanggal_surat').val();
+        const asalSurat = $('#asal_surat').val();
+        const ringkasan = $('#ringkasan').val();
+
+        // --- Helper function to format date to Indonesian format ---
+        function formatDateToIndonesian(dateString) {
+            if (!dateString) return ''; // Return empty if date is not set
+            
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            // Create date object from YYYY-MM-DD string
+            // Adding 'T00:00:00' ensures it's parsed in the local timezone, avoiding UTC conversion issues.
+            const date = new Date(dateString + 'T00:00:00');
+
+            const dayName = days[date.getDay()];
+            const dayOfMonth = date.getDate();
+            const monthName = months[date.getMonth()];
+            const year = date.getFullYear();
+
+            return `${dayName}, ${dayOfMonth} ${monthName} ${year}`;
+        }
+
+        // --- WhatsApp Settings ---
+        let walink = 'https://web.whatsapp.com/send';
+        const phone = ''; // Ganti dengan nomor tujuan jika ada, misal: '6281234567890'
+        const text_yes = 'Pesan telah disiapkan untuk dikirim.';
+        const text_no = 'Harap isi semua kolom yang wajib diisi.';
+
+        // --- Smartphone Support ---
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            walink = 'whatsapp://send';
+        }
+
+        // --- Validation ---
+        // Check if all required fields are filled
+        if (tglDiterima && noSurat && tglSurat && asalSurat && ringkasan) {
+            
+            // Format the dates before creating the message
+            const tglDiterimaFormatted = formatDateToIndonesian(tglDiterima);
+            const tglSuratFormatted = formatDateToIndonesian(tglSurat);
+
+            // --- Format the message ---
+            // Using encodeURIComponent to safely handle special characters in the URL
+            const message = encodeURIComponent(
+                '*DISPOSISI SURAT*\n' +
+                '===================================\n' +
+                '*Tanggal Diterima :* ' + tglDiterimaFormatted + '\n' +
+                '--------------------------------------------------------------------------\n' +
+                '*Nomor Surat :* ' + noSurat + '\n' +
+                '--------------------------------------------------------------------------\n' +
+                '*Tanggal Surat :* ' + tglSuratFormatted + '\n' +
+                '--------------------------------------------------------------------------\n' +
+                '*Asal Surat :* ' + asalSurat + '\n' +
+                '--------------------------------------------------------------------------\n' +
+                '*Ringkasan :*\n' + ringkasan + '\n' +
+                '==================================='
+            );
+
+            // --- Final WhatsApp URL ---
+            const blanter_whatsapp = `${walink}?phone=${phone}&text=${message}`;
+
+            // --- Open WhatsApp Window ---
+            window.open(blanter_whatsapp, '_blank');
+            $("#text-info").html('<span class="yes">' + text_yes + '</span>');
+        } else {
+            // Show error message if any field is empty
+            $("#text-info").html('<span class="no">' + text_no + '</span>');
+        }
+    });
+    </script>
+</body>
+</html>
