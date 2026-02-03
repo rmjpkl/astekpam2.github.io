@@ -2,83 +2,142 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Generator Laporan Atensi Pimpinan</title>
+
 <style>
-body {
-  font-family: "Times New Roman", serif;
-  background: #f4f6f8;
-  padding: 20px;
+:root {
+  --primary: #1e88e5;
+  --primary-dark: #1565c0;
+  --success: #2e7d32;
+  --success-dark: #1b5e20;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 12px;
+}
+
 .container {
   max-width: 900px;
   margin: auto;
   background: #fff;
-  padding: 20px;
-  border-radius: 6px;
+  padding: 16px;
+  border-radius: 10px;
 }
+
 h2 {
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
+
 label {
-  font-weight: bold;
+  font-weight: 600;
   display: block;
-  margin-top: 12px;
+  margin-top: 14px;
+  font-size: 14px;
 }
-input, textarea, button {
+
+input,
+textarea,
+button {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  font-family: inherit;
+  padding: 12px;
+  margin-top: 6px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
+
 textarea {
   min-height: 90px;
+  resize: vertical;
 }
+
 button {
-  margin-top: 15px;
-  background: #1e88e5;
+  margin-top: 18px;
+  background: var(--primary);
   color: #fff;
   border: none;
   cursor: pointer;
+  font-weight: 600;
 }
+
+button:active {
+  transform: scale(0.98);
+}
+
 button:hover {
-  background: #1565c0;
+  background: var(--primary-dark);
 }
+
 .copy-btn {
-  background: #2e7d32;
+  background: var(--success);
 }
+
 .copy-btn:hover {
-  background: #1b5e20;
+  background: var(--success-dark);
 }
+
 .output textarea {
-  min-height: 420px;
+  min-height: 360px;
   white-space: pre-wrap;
 }
+
+/* BARIS JAM */
 .row {
   display: flex;
   gap: 10px;
 }
+
 .row input {
   flex: 1;
 }
+
+/* ===== MODE HP ===== */
+@media (max-width: 600px) {
+  h2 {
+    font-size: 18px;
+  }
+
+  .container {
+    padding: 14px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 14px;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <div class="container">
 <h2>Form Laporan Atensi Pimpinan</h2>
 
-<!-- HARI & TANGGAL -->
 <label>Hari</label>
 <input type="text" id="hari">
 
 <label>Tanggal</label>
 <input type="text" id="tanggal">
 
-<!-- JAM -->
 <label>Jam Pelaksanaan</label>
 <div class="row">
-  <input type="text" id="jamAwal" placeholder="Jam Mulai (contoh: 16.30)">
-  <input type="text" id="jamAkhir" placeholder="Jam Selesai (contoh: 16.45)">
+  <input type="text" id="jamAwal" placeholder="Jam Mulai (16.30)">
+  <input type="text" id="jamAkhir" placeholder="Jam Selesai (16.45)">
 </div>
 
 <label>Blok / Wisma</label>
@@ -114,12 +173,12 @@ button:hover {
 <label>Lainnya</label>
 <input type="text" id="lainnya" value="NIHIL">
 
-<button onclick="generate()">Generate Laporan</button>
+<button onclick="generate()">📄 Generate Laporan</button>
 
 <div class="output">
-<label>Hasil Laporan</label>
-<textarea id="hasil"></textarea>
-<button class="copy-btn" onclick="copyText()">📋 Copy Laporan</button>
+  <label>Hasil Laporan</label>
+  <textarea id="hasil"></textarea>
+  <button class="copy-btn" onclick="copyText()">📋 Copy Laporan</button>
 </div>
 </div>
 
@@ -137,19 +196,7 @@ function initTanggal() {
 }
 
 function generate() {
-  const hari = document.getElementById("hari").value;
-  const tanggal = document.getElementById("tanggal").value;
-  const jamAwal = document.getElementById("jamAwal").value;
-  const jamAkhir = document.getElementById("jamAkhir").value;
-  const blok = document.getElementById("blok").value;
-  const kamar = document.getElementById("kamar").value;
-  const anggota = document.getElementById("anggota").value;
-
-  const sajam = document.getElementById("sajam").value;
-  const hp = document.getElementById("hp").value;
-  const narkoba = document.getElementById("narkoba").value;
-  const elektronik = document.getElementById("elektronik").value;
-  const lainnya = document.getElementById("lainnya").value;
+  const g = id => document.getElementById(id).value;
 
   const laporan = `LAPORAN ATENSI PIMPINAN
 
@@ -162,44 +209,23 @@ Dari :
 Kepala Lapas Kelas IIB Batang
 
 I. PERISTIWA/ KEJADIAN
-Pelaksanaan razia/sidak ${blok} ${kamar} pada Lapas Kelas IIB Batang.
+Pelaksanaan razia/sidak ${g("blok")} ${g("kamar")} pada Lapas Kelas IIB Batang.
 
 II. URAIAN/ PERISTIWA/ KEJADIAN
-A. DASAR
-1. UU RI Nomor 22 Tahun 2022 Tentang Pemasyarakatan;
-2. Permenkum HAM No. 8 Tahun 2024 tentang penyelenggaraan keamanan dan ketertiban pada satuan kerja Pemasyarakatan;
-
-B. Pada hari ini, ${hari}, ${tanggal} mulai pukul ${jamAwal} s/d ${jamAkhir} WIB, Tim penggeledahan Lapas Kelas IIB Batang melaksanakan razia/sidak dan pemeriksaan instalasi listrik di ${blok} ${kamar}.
-
-C. Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang larangan berupa jaringan liar, stop kontak, HP, Narkoba dan SAJAM.
+B. Pada hari ${g("hari")}, ${g("tanggal")} mulai pukul ${g("jamAwal")} s/d ${g("jamAkhir")} WIB.
 
 D. Razia/penggeledahan diikuti :
-${anggota}
+${g("anggota")}
 
-E. Hasil razia/sidak petugas menemukan benda/barang larangan berupa :
-1. Sajam        : ${sajam}
-2. Hp            : ${hp}
-3. Narkoba     : ${narkoba}
-4. Elektronik   : ${elektronik}
-5. Lainnya      : ${lainnya}
+E. Hasil :
+1. Sajam : ${g("sajam")}
+2. Hp : ${g("hp")}
+3. Narkoba : ${g("narkoba")}
+4. Elektronik : ${g("elektronik")}
+5. Lainnya : ${g("lainnya")}
 
-III. SARAN TINDAK LANJUT
-1. Barang bukti hasil razia diinventarisir dan didata.
-2. Barang bukti hasil razia diamankan / dimusnahkan.
-3. Ka. Lapas melaporkan pelaksanaan razia kepada Kakanwil Ditjen Pas Jateng.
-4. Pelaksanaan razia berjalan dengan aman, tertib dan lancar.
-
-IV. PENUTUP
-Demikian laporan yang dapat kami sampaikan, selanjutnya mohon petunjuk dan arahan.
-
-${hari}, ${tanggal}
-Kepala Lapas Batang
-
-Nurhamdan
-
-Tembusan Kepada Yth. :
-Direktur Jenderal Pemasyarakatan
-Cq. Direktur Pengamanan dan Intelijen Ditjen Pas`;
+${g("hari")}, ${g("tanggal")}
+Kepala Lapas Batang`;
 
   document.getElementById("hasil").value = laporan;
 }
