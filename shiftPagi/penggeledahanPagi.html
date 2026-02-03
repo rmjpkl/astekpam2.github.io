@@ -1,229 +1,218 @@
-<HTML lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PENGGELEDAHAN PAGI</title>
-        <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-      rel="stylesheet"
-    />
-        <style type="text/css">
-            #send_form {
-                color: #fff;
-                background: #4e4e4e;
-                text-decoration: none;
-                display: inline-block;
-                padding: 10px 25px;
-                border-radius: .3rem;
-                font-weight: 700;
-                letter-spacing: .5px;
-                font-size: 15px;
-                float: right;
-            }
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Generator Laporan Atensi Pimpinan</title>
+<style>
+body {
+  font-family: "Times New Roman", serif;
+  background: #f4f6f8;
+  padding: 20px;
+}
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+}
+h2 {
+  text-align: center;
+}
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 12px;
+}
+input, textarea, button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  font-family: inherit;
+}
+textarea {
+  min-height: 90px;
+}
+button {
+  margin-top: 15px;
+  background: #1e88e5;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #1565c0;
+}
+.copy-btn {
+  background: #2e7d32;
+}
+.copy-btn:hover {
+  background: #1b5e20;
+}
+.output textarea {
+  min-height: 420px;
+  white-space: pre-wrap;
+}
+.row {
+  display: flex;
+  gap: 10px;
+}
+.row input {
+  flex: 1;
+}
+</style>
+</head>
+<body>
 
-        </style>
+<div class="container">
+<h2>Form Laporan Atensi Pimpinan</h2>
 
-        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    
-    <div class="container-sm">
-           <body style="background-color:rgb(95, 62, 255);">
-            <h1>PENGGELEDAHAN PAGI</h1>
-            <form>
-                
-                <fieldset class="form-group border p-3">
-               <div class="mb-3">
-                    <label for="tanggal" class="form-label">Pilih Tanggal</label>
-                    <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="klik unutk memilih tanggal">
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
-                    <script>
-                        $(document).ready(function(){
-                        $('#tanggal').datepicker({
-                            format: 'DD , dd MM yyyy',
-                            language: 'id', 
-                            autoclose: true
-                        });   
-                        $('#tanggal').datepicker('setDate', new Date())                      
-                        });
-                    </script>
-                </div>
+<!-- HARI & TANGGAL -->
+<label>Hari</label>
+<input type="text" id="hari">
 
-                <div class="mb-3">
-                    <label class="form-label">Nama Blok</label>
-                    <select class="form-control"name="namaBlok" id="namaBlok">
-                        <option value=" ">Pilih Blok</option>
-                        <option value="Wisma Anggrek">Wisma Anggrek</option>
-                        <option value="Wisma Bugenvil">Wisma Bugenvil</option>
-                        <option value="Wisma Cluadia">Wisma Cluadia</option>
-                        <option value="Wisma Edelweis">Wisma Edelweis</option>
-                        <option value="Wisma Flamboyan">Wisma Flamboyan</option>
-                        <option value="Wisma Dahlia">Wisma Dahlia</option>
-                    </select>
-                </div>
+<label>Tanggal</label>
+<input type="text" id="tanggal">
 
-                <div class="mb-3">
-                    <label class="form-label">Kamar</label>
-                    <input type="text" class="form-control" id="kamar" required="" placeholder="ex: Kamar 1 dan 2">
-                </div>
+<!-- JAM -->
+<label>Jam Pelaksanaan</label>
+<div class="row">
+  <input type="text" id="jamAwal" placeholder="Jam Mulai (contoh: 16.30)">
+  <input type="text" id="jamAkhir" placeholder="Jam Selesai (contoh: 16.45)">
+</div>
 
-                <div class="mb-3">
-                    <label class="form-label">Jam Awal Penggelahan </label>
-                    <input type="time" class="form-control" id="pukulAwal" required="" >
-                </div>
+<label>Blok / Wisma</label>
+<input list="blokList" id="blok">
+<datalist id="blokList">
+  <option value="Wisma Anggrek">
+  <option value="Wisma Bougenville">
+  <option value="Wisma Claudia">
+  <option value="Wisma Dahlia">
+  <option value="Wisma Edelweis">
+  <option value="Wisma Flamboyan">
+</datalist>
 
-                <div class="mb-3">
-                    <label class="form-label">Jam Akhri Penggelahan </label>
-                    <input type="time" class="form-control" id="pukulAkhir" required="" >
-                </div>
+<label>Kamar</label>
+<input type="text" id="kamar" placeholder="Contoh: Kamar 1 dan 2">
 
-                <div class="mb-3">
-                    <label class="form-label">Tim Penggeledahan</label>
-                    <textarea class="form-control" id="timPenggeldahan">Ka Rupam, Waka Rupam, Anggota Jaga dan Staf KPLP</textarea>  
-                </div>  
+<label>Anggota Penggeledahan</label>
+<textarea id="anggota">1. Karupam
+2. Anggota Jaga</textarea>
 
-                <div class="mb-3">
-                    <label class="form-label">Sajam</label>
-                    <input type="text" class="form-control" id="sajam" value="NIHIL">
-                </div>
+<label>Sajam</label>
+<input type="text" id="sajam" value="NIHIL">
 
-                <div class="mb-3">
-                    <label class="form-label">HP</label>
-                    <input type="text" class="form-control" id="hp" value="NIHIL">
-                </div>
+<label>HP</label>
+<input type="text" id="hp" value="NIHIL">
 
-                <div class="mb-3">
-                    <label class="form-label">Narkoba</label>
-                    <input type="text" class="form-control" id="narkoba" value="NIHIL">
-                </div>
+<label>Narkotika</label>
+<input type="text" id="narkoba" value="NIHIL">
 
-                <div class="mb-3">
-                    <label class="form-label">Hasil Razia Lainnya</label>
-                    <textarea class="form-control" id="hasilRaziaLainnya" onclick="getKeterangan()">NIHIL</textarea>  
-                </div>  
+<label>Elektronik</label>
+<input type="text" id="elektronik" value="NIHIL">
 
-                <div class="mb-3">
-                    <label class="form-label">Hasil Razia Lainnya</label>
-                    <textarea class="form-control" id="saranTindakLanjut"></textarea> 
-                    <script>
-                        function getKeterangan() {
-                        var inputNilai = document.getElementById("hasilRaziaLainnya").value;
-                        if (inputNilai == "NIHIL" || inputNilai == "Nihil") {
-                            document.getElementById("saranTindakLanjut").innerHTML = "1) Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. %0A2) Tidak ada barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
-                        } else {
-                            document.getElementById("saranTindakLanjut").innerHTML =  "1) Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diinventarisir dan didata. %0A2) Barang bukti hasil razia/ sidak dan pemeriksaan instalasi listrik diamankan / dimusnahkan.";
-                        }
-                        }
-                    </script>
-                </div>  
+<label>Lainnya</label>
+<input type="text" id="lainnya" value="NIHIL">
 
+<button onclick="generate()">Generate Laporan</button>
 
-                </fieldset>
-           
-    
-                  <a class="send_form" id="send_form" href="javascript:void" type="submit" title="Send to Whatsapp"> <i class="fa fa-paper-plane"></i>  Kirim</a>
- 
-            </form>
-            <br><br>
-    </div>
-    
-    <script type="text/javascript">
-        //<![CDATA[
-        $(document).on('click', '.send_form', function () {
-            var input_blanter = document.getElementById('tanggal');
-            /* Whatsapp Settings */
-            var walink = 'https://web.whatsapp.com/send',
-                phone = '',
-                walink2 = 'Halo saya ingin Memesan ',
-                text_yes = 'Terkirim.',
-                text_no = 'Isi semua Formulir lalu klik Send.';
-    
-            /* Smartphone Support */
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                var walink = 'whatsapp://send';
-            }
-    
-            if ("" != input_blanter.value) {
-    
-                /* Call Input Form */
-                var input_tanggal=$("#tanggal").val(),
-                input_namaBlok =$("#namaBlok ").val(),
-                input_kamar=$("#kamar").val(),
-                input_pukulAwal=$("#pukulAwal").val(),
-                input_pukulAkhir=$("#pukulAkhir").val(),
-                input_timPenggeldahan=$("#timPenggeldahan").val(),
-                input_sajam=$("#sajam").val(),
-                input_hp=$("#hp").val(),
-                input_narkoba=$("#narkoba").val(),
-                input_hasilRaziaLainnya=$("#hasilRaziaLainnya").val(),
-                input_saranTindakLanjut=$("#saranTindakLanjut").val();
-    
-    /* Cek kemudian print di url whatsapp api */
-    
-                /* Final Whatsapp URL */
-                var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A%0A' +
-                    '*LAPORAN ATENSI PIMPINAN*' + '%0A' +
-                    ' ' + '%0A' +
-                    'Kepada,' + '%0A' +
-                    'Yth.' + '%0A' +
-                    '1) Bp. KAKANWIL Jawa Tengah' + '%0A' +
-                    '2) Bp. KADIVPAS Jawa Tengah ' + '%0A' +
-                    ' ' + '%0A' +
-                    '*I. PERISTIWA/ KEJADIAN*' + '%0A' +
-                    ' ' + '%0A' +
-                    '1) Pelaksanaan razia/sidak ' + input_namaBlok + ' ' + input_kamar + ' pada Lapas Kelas IIB Batang.'+ '%0A' +
-                    ' ' + '%0A' +
-                    '*II. URAIAN/ PERISTIWA/ KEJADIAN*' + '%0A' +
-                    '1) Pelaksanan kegiatan penggeledahan/ razia kamar hunian di Lapas Kelas IIB Batang dalam rangka menindaklanjuti: ' + '%0A' +
-                    
-                    'a. Surat Direktur Jenderal Pemasyarakatan Nomor: PAS-PR.02.02-57 tanggal 8 September 2021, hal penertiban jaringan listrik dan peningkatan kewaspadaan keamanan dan ketertiban. ' + '%0A' +
-                    'b. Surat Direktur Jenderal Pemasyarakatan Nomor : PAS-PK.02.10.01-1147 tanggal 19 September 2021, hal langkah progressive sebagai tindak lanjut atas penertiban jaringan listrik, handphone dan peningkatan kewaspadaan keamanan dan ketertiban pada UPT Pemasyarakatan. ' + '%0A' +
-                    ' ' + '%0A' +
-                    '2) Pada hari ini, '+ input_tanggal+' mulai pukul '+ input_pukulAwal +' s/d '+  input_pukulAkhir +' WIB. Tim penggeledahan Lapas Kelas IIB Batang melaksanakan razia/sidak dan pemeriksaan instalasi listrik di  ' + input_namaBlok + ' ' + input_kamar + '%0A' +
-                    ' ' + '%0A' +
-                    '3) Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang-barang larangan dan instalasi listrik yang berbahaya di dalam Lapas berupa seperti jaringan liar, stop kontak, HP, Narkoba dan SAJAM.' + '%0A' +
-                    ' ' + '%0A' +
-                    '4) Razia/penggeledahan diikuti :' + '%0A' +
-                    input_timPenggeldahan + '%0A' +
-                    ' ' + '%0A' +
-                    '5) Hasil razia/ sidak dan pemeriksaan instalasi listrik petugas tidak menemukan benda/barang larangan berupa :' + '%0A' +
-                    '```1. Sajam   : ' + input_sajam  +'%0A' +
-                    '2. Hp      : ' + input_hp +'%0A' +
-                    '3. Narkoba : ' + input_narkoba +'%0A' +
-                    'Hasil Razia Lainnya.' + '%0A' +
-                    input_hasilRaziaLainnya + '``` %0A' +
-                    ' ' + '%0A' +
-                    '*III. SARAN TINDAK LANJUT*' + '%0A' +
-                    input_saranTindakLanjut + '%0A' +
-                    '3) Ka. Lapas melaporkan pelaksanaan razia/ sidak kepada Kakanwil Kemenkumham Jateng melalui Kepala Divisi Pemasyarakatan.' + '%0A' +
-                    '4) Pelaksanaan razia/ sidak berjalan dengan aman, tertib dan lancar. ' + '%0A' +
-                    ' ' + '%0A' +
-                    '*IV. PENUTUP* ' + '%0A' +
-                    'Demikian laporan yang dapat kami sampaikan, selanjutnya mohon  petunjuk dan arahan. ' + '%0A' +
-                    ' ' + '%0A' +
-                    input_tanggal + '%0A' +
-                    'Kepala Lapas Batang' + '%0A' +
-                    ' ' + '%0A' +
-                    'Jose Quelo' + '%0A' +
-                    ' ' + '%0A' +
-                    'Tembusan Kepada Yth. :' + '%0A' +
-                    'Direktur Jenderal Pemasyarakatan' + '%0A' +
-                    'Cq. Direktur Pengamanan dan Intelijen Ditjen Pas' + '%0A';
-    
-                /* Whatsapp Window Open */
-                window.open(blanter_whatsapp, '_blank');
-                document.getElementById("text-info").innerHTML = '<span class="yes">' + text_yes + '</span>';
-            } else {
-                document.getElementById("text-info").innerHTML = '<span class="no">' + text_no + '</span>';
-            }
-        });
-    //]]>
-    </script>
-    
-    </body>
-    
-    </HTML>
+<div class="output">
+<label>Hasil Laporan</label>
+<textarea id="hasil"></textarea>
+<button class="copy-btn" onclick="copyText()">📋 Copy Laporan</button>
+</div>
+</div>
+
+<script>
+const hariArr = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+const bulanArr = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+
+function initTanggal() {
+  const d = new Date();
+  document.getElementById("hari").value = hariArr[d.getDay()];
+  document.getElementById("tanggal").value =
+    String(d.getDate()).padStart(2,"0") + " " +
+    bulanArr[d.getMonth()] + " " +
+    d.getFullYear();
+}
+
+function generate() {
+  const hari = document.getElementById("hari").value;
+  const tanggal = document.getElementById("tanggal").value;
+  const jamAwal = document.getElementById("jamAwal").value;
+  const jamAkhir = document.getElementById("jamAkhir").value;
+  const blok = document.getElementById("blok").value;
+  const kamar = document.getElementById("kamar").value;
+  const anggota = document.getElementById("anggota").value;
+
+  const sajam = document.getElementById("sajam").value;
+  const hp = document.getElementById("hp").value;
+  const narkoba = document.getElementById("narkoba").value;
+  const elektronik = document.getElementById("elektronik").value;
+  const lainnya = document.getElementById("lainnya").value;
+
+  const laporan = `LAPORAN ATENSI PIMPINAN
+
+Kepada,
+Yth.
+1. Direktur Jenderal Pemasyarakatan
+2. KAKANWIL DITJEN PAS Jawa Tengah
+
+Dari :
+Kepala Lapas Kelas IIB Batang
+
+I. PERISTIWA/ KEJADIAN
+Pelaksanaan razia/sidak ${blok} ${kamar} pada Lapas Kelas IIB Batang.
+
+II. URAIAN/ PERISTIWA/ KEJADIAN
+A. DASAR
+1. UU RI Nomor 22 Tahun 2022 Tentang Pemasyarakatan;
+2. Permenkum HAM No. 8 Tahun 2024 tentang penyelenggaraan keamanan dan ketertiban pada satuan kerja Pemasyarakatan;
+
+B. Pada hari ini, ${hari}, ${tanggal} mulai pukul ${jamAwal} s/d ${jamAkhir} WIB, Tim penggeledahan Lapas Kelas IIB Batang melaksanakan razia/sidak dan pemeriksaan instalasi listrik di ${blok} ${kamar}.
+
+C. Razia/sidak dan pemeriksaan instalasi listrik dilaksanakan sesuai perintah Ka. Lapas untuk meminimalisir benda/barang larangan berupa jaringan liar, stop kontak, HP, Narkoba dan SAJAM.
+
+D. Razia/penggeledahan diikuti :
+${anggota}
+
+E. Hasil razia/sidak petugas menemukan benda/barang larangan berupa :
+1. Sajam        : ${sajam}
+2. Hp            : ${hp}
+3. Narkoba     : ${narkoba}
+4. Elektronik   : ${elektronik}
+5. Lainnya      : ${lainnya}
+
+III. SARAN TINDAK LANJUT
+1. Barang bukti hasil razia diinventarisir dan didata.
+2. Barang bukti hasil razia diamankan / dimusnahkan.
+3. Ka. Lapas melaporkan pelaksanaan razia kepada Kakanwil Ditjen Pas Jateng.
+4. Pelaksanaan razia berjalan dengan aman, tertib dan lancar.
+
+IV. PENUTUP
+Demikian laporan yang dapat kami sampaikan, selanjutnya mohon petunjuk dan arahan.
+
+${hari}, ${tanggal}
+Kepala Lapas Batang
+
+Nurhamdan
+
+Tembusan Kepada Yth. :
+Direktur Jenderal Pemasyarakatan
+Cq. Direktur Pengamanan dan Intelijen Ditjen Pas`;
+
+  document.getElementById("hasil").value = laporan;
+}
+
+function copyText() {
+  const t = document.getElementById("hasil");
+  t.select();
+  document.execCommand("copy");
+  alert("Laporan berhasil disalin ✅");
+}
+
+initTanggal();
+</script>
+
+</body>
+</html>
